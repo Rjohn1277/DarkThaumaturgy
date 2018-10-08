@@ -25,6 +25,7 @@ public class MainGameScreen implements Screen{
     //box2d
     private World world;
     private Body body;
+    private Body body2;
     private Vector2 gravitationalForces;
 
 
@@ -36,12 +37,12 @@ public class MainGameScreen implements Screen{
         this.game = game;
         this.batch = batch;
 
-        gravitationalForces = new Vector2(0, -9.8f);
+        gravitationalForces = new Vector2(0, -1f);
 
         world = new World(gravitationalForces, false);
         b2dr = new Box2DDebugRenderer();
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        camera.setToOrtho(false,16,10);
         camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
 
     }
@@ -64,6 +65,8 @@ public class MainGameScreen implements Screen{
         fdef.isSensor = false;
         body.createFixture(fdef);
 
+        shape.dispose();
+
         return body;
     }
 
@@ -71,7 +74,8 @@ public class MainGameScreen implements Screen{
     public void show() {
         Gdx.app.log(TAG, "MainGame SHOW");
 
-        body = createBody(new Vector2(camera.viewportWidth/2,camera.viewportHeight),10f);
+        body = createBody(new Vector2(camera.viewportWidth/2,camera.viewportHeight),1f);
+        body2 = createBody(new Vector2(camera.viewportWidth/2+2,camera.viewportHeight),2f);
     }
 
     @Override
@@ -82,7 +86,7 @@ public class MainGameScreen implements Screen{
 
 
         Gdx.app.log(TAG, "MainGame RENDER");
-        Gdx.gl.glClearColor(0, 1, 1, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         b2dr.render(world,camera.combined);
@@ -91,26 +95,29 @@ public class MainGameScreen implements Screen{
 
     @Override
     public void resize(int width, int height) {
-
+        Gdx.app.log(TAG, "MainGame RESIZE");
     }
 
     @Override
     public void pause() {
-
+        Gdx.app.log(TAG, "MainGame PAUSE");
     }
 
     @Override
     public void resume() {
-
+        Gdx.app.log(TAG, "MainGame RESUME");
     }
 
     @Override
     public void hide() {
-
+        Gdx.app.log(TAG, "MainGame HIDE");
     }
 
     @Override
     public void dispose() {
+        Gdx.app.log(TAG, "MainGame DISPOSE");
+        b2dr.dispose();
+        world.dispose();
 
     }
 }

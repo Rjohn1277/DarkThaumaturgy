@@ -13,6 +13,7 @@ public class MainMenuScreen implements Screen{
     private DarkThaumaturgy game;
     private SpriteBatch batch;
     private Texture img;
+    private float timeToWait = 2f;
 
     public MainMenuScreen(DarkThaumaturgy game, SpriteBatch batch) {
         this.game = game;
@@ -30,6 +31,14 @@ public class MainMenuScreen implements Screen{
         Gdx.app.log(TAG, "MainMenu RENDER");
         Gdx.gl.glClearColor(0, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        timeToWait-=delta;
+        Gdx.app.log(TAG, "time To Wait: " + timeToWait);
+        if(timeToWait<=0) {
+
+            game.setScreen(DarkThaumaturgy.SCREENTYPE.GAME);
+            timeToWait = 2f;
+        }
     }
 
     @Override
