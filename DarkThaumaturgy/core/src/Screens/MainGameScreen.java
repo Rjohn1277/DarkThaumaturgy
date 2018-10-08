@@ -36,14 +36,14 @@ public class MainGameScreen implements Screen{
         this.game = game;
         this.batch = batch;
 
-        gravitationalForces = new Vector2(0, -9.8f);
+      /*  gravitationalForces = new Vector2(0, -9.8f);
 
         world = new World(gravitationalForces, false);
         b2dr = new Box2DDebugRenderer();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
-
+*/
     }
 
     public Body createBody(Vector2 position, float size) {
