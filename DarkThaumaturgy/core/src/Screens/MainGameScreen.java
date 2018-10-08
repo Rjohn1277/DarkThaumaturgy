@@ -23,14 +23,14 @@ public class MainGameScreen implements Screen{
     private Texture img;
 
     //box2d
-    private World world;
+   /* private World world;
     private Body body;
-    private Vector2 gravitationalForces;
+    private Vector2 gravitationalForces;*/
 
 
     //view
-    private OrthographicCamera camera;
-    private Box2DDebugRenderer b2dr;
+    /*private OrthographicCamera camera;
+    private Box2DDebugRenderer b2dr;*/
 
     public MainGameScreen(DarkThaumaturgy game, SpriteBatch batch) {
         this.game = game;
@@ -46,7 +46,7 @@ public class MainGameScreen implements Screen{
 */
     }
 
-    public Body createBody(Vector2 position, float size) {
+   /* public Body createBody(Vector2 position, float size) {
         Body body;
         BodyDef bdef = new BodyDef();
         FixtureDef fdef = new FixtureDef();
@@ -65,27 +65,27 @@ public class MainGameScreen implements Screen{
         body.createFixture(fdef);
 
         return body;
-    }
+    }*/
 
     @Override
     public void show() {
         Gdx.app.log(TAG, "MainGame SHOW");
 
-        body = createBody(new Vector2(camera.viewportWidth/2,camera.viewportHeight),10f);
+       /* body = createBody(new Vector2(camera.viewportWidth/2,camera.viewportHeight),10f);*/
     }
 
     @Override
     public void render(float delta) {
-        camera.update();
+        /*camera.update();
 
-        world.step(delta,6,2);
+        world.step(delta,6,2);*/
 
 
         Gdx.app.log(TAG, "MainGame RENDER");
         Gdx.gl.glClearColor(0, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        b2dr.render(world,camera.combined);
+       /* b2dr.render(world,camera.combined);*/
 
     }
 
