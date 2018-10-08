@@ -2,6 +2,7 @@ package Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -51,19 +52,40 @@ public class MainGameScreen implements Screen{
         FixtureDef fdef = new FixtureDef();
 
         bdef.type = BodyDef.BodyType.DynamicBody;
-        bdef.position.set(camera.viewportWidth/2,camera.viewportHeight);
+        bdef.position.set(position.x,position.y);
+        body = world.createBody(bdef);
 
         CircleShape shape = new CircleShape();
         shape.setRadius(size/2);
+
+        fdef.shape = shape;
+        fdef.density = 1f;
+        fdef.restitution = .5f;
+        fdef.isSensor = false;
+        body.createFixture(fdef);
+
+        return body;
     }
 
     @Override
     public void show() {
+        Gdx.app.log(TAG, "MainGame SHOW");
 
+        body = createBody(new Vector2(camera.viewportWidth/2,camera.viewportHeight),10f);
     }
 
     @Override
     public void render(float delta) {
+        camera.update();
+
+        world.step(delta,6,2);
+
+
+        Gdx.app.log(TAG, "MainGame RENDER");
+        Gdx.gl.glClearColor(0, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        b2dr.render(world,camera.combined);
 
     }
 
