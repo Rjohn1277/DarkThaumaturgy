@@ -6,14 +6,19 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.darkthaumaturgy.DarkThaumaturgy;
+
+import java.util.Random;
 
 public class MainGameScreen implements Screen{
     private static final String TAG = MainGameScreen.class.getSimpleName();
@@ -27,7 +32,11 @@ public class MainGameScreen implements Screen{
     private Body body;
     private Body body2;
     private Vector2 gravitationalForces;
+    private float random;
 
+    private static final short GROUND = 1;
+    private static final short PLAYER = 2;
+    private static final short ENEMY = 3;
 
     //view
     private OrthographicCamera camera;
@@ -45,24 +54,55 @@ public class MainGameScreen implements Screen{
         camera.setToOrtho(false,16,10);
         camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
 
+
     }
 
-    public Body createBody(Vector2 position, float size) {
+    public Body createBody(Vector2 position, float size, float force, BodyDef.BodyType type, int bodyType, short self, short interaction) {
         Body body;
         BodyDef bdef = new BodyDef();
         FixtureDef fdef = new FixtureDef();
 
-        bdef.type = BodyDef.BodyType.DynamicBody;
-        bdef.position.set(position.x,position.y);
-        body = world.createBody(bdef);
 
-        CircleShape shape = new CircleShape();
-        shape.setRadius(size/2);
+        switch(type) {
+            case StaticBody:
+                bdef.type = BodyDef.BodyType.StaticBody;
+                break;
+            case DynamicBody:
+                bdef.type = BodyDef.BodyType.DynamicBody;
+                break;
+            case KinematicBody:
+                bdef.type = BodyDef.BodyType.KinematicBody;
+                break;
+
+        }
+
+        bdef.position.set(position.x,position.y);
+        bdef.gravityScale = force;
+        body = world.createBody(bdef);
+        Shape shape;
+
+        switch(bodyType) {
+            case 0:
+                shape = new CircleShape();
+                shape.setRadius(size/2);
+                break;
+            case 1:
+                shape = new PolygonShape();
+                ((PolygonShape)shape).setAsBox(size/2, size/2);
+                break;
+                default:
+                    shape = new CircleShape();
+                    shape.setRadius(size/2);
+        }
+
+
 
         fdef.shape = shape;
         fdef.density = 1f;
         fdef.restitution = .5f;
         fdef.isSensor = false;
+        fdef.filter.categoryBits = self;
+        fdef.filter.maskBits = interaction;
         body.createFixture(fdef);
 
         shape.dispose();
@@ -74,9 +114,20 @@ public class MainGameScreen implements Screen{
     public void show() {
         Gdx.app.log(TAG, "MainGame SHOW");
 
-        body = createBody(new Vector2(camera.viewportWidth/2,camera.viewportHeight),1f);
-        body2 = createBody(new Vector2(camera.viewportWidth/2+2,camera.viewportHeight),2f);
+        for(int i = 2; i<5; i++) {
+            random = MathUtils.random(1,3);
+            body = createBody(new Vector2(i, camera.viewportHeight),
+                    random, 1, BodyDef.BodyType.DynamicBody, 0, PLAYER, (short) (GROUND|ENEMY));
+        }
+        for(int i = 3; i<6; i++) {
+            random = MathUtils.random(1,5);
+            body = createBody(new Vector2(i, camera.viewportHeight+10),
+                    random, 1, BodyDef.BodyType.DynamicBody, 0, ENEMY, (short)(GROUND|PLAYER));
+        }
+        body2 = createBody(new Vector2(camera.viewportWidth/2,-camera.viewportHeight/2+1),camera.viewportWidth,
+                0, BodyDef.BodyType.StaticBody, 1,GROUND, PLAYER);
     }
+
 
     @Override
     public void render(float delta) {
