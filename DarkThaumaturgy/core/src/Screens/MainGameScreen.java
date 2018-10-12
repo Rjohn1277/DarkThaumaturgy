@@ -1,6 +1,7 @@
 package Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -34,9 +35,9 @@ public class MainGameScreen implements Screen{
     private Vector2 gravitationalForces;
     private float random;
 
-    private static final short GROUND = 1;
-    private static final short PLAYER = 2;
-    private static final short ENEMY = 3;
+    private static final short GROUND = 2;
+    private static final short PLAYER = 4;
+    private static final short ENEMY = 8;
 
     //view
     private OrthographicCamera camera;
@@ -48,7 +49,7 @@ public class MainGameScreen implements Screen{
 
         gravitationalForces = new Vector2(0, -1f);
 
-        world = new World(gravitationalForces, false);
+        world = new World(gravitationalForces, true);
         b2dr = new Box2DDebugRenderer();
         camera = new OrthographicCamera();
         camera.setToOrtho(false,16,10);
@@ -57,7 +58,8 @@ public class MainGameScreen implements Screen{
 
     }
 
-    public Body createBody(Vector2 position, float size, float force, BodyDef.BodyType type, int bodyType, short self, short interaction) {
+    public Body createBody(Vector2 position, float size, float force,
+                           BodyDef.BodyType type, int bodyType, short self, short interaction) {
         Body body;
         BodyDef bdef = new BodyDef();
         FixtureDef fdef = new FixtureDef();
@@ -114,23 +116,40 @@ public class MainGameScreen implements Screen{
     public void show() {
         Gdx.app.log(TAG, "MainGame SHOW");
 
-        for(int i = 2; i<5; i++) {
-            random = MathUtils.random(1,3);
-            body = createBody(new Vector2(i, camera.viewportHeight),
-                    random, 1, BodyDef.BodyType.DynamicBody, 0, PLAYER, (short) (GROUND|ENEMY));
-        }
+
+
         for(int i = 3; i<6; i++) {
             random = MathUtils.random(1,5);
             body = createBody(new Vector2(i, camera.viewportHeight+10),
-                    random, 1, BodyDef.BodyType.DynamicBody, 0, ENEMY, (short)(GROUND|PLAYER));
+                    random, 1, BodyDef.BodyType.DynamicBody, 0, ENEMY, (short)(PLAYER));
         }
+
+        body = createBody(new Vector2(camera.viewportWidth/2, camera.viewportHeight),
+                random, 1, BodyDef.BodyType.DynamicBody, 0, PLAYER, (short) (GROUND|ENEMY));
+
         body2 = createBody(new Vector2(camera.viewportWidth/2,-camera.viewportHeight/2+1),camera.viewportWidth,
                 0, BodyDef.BodyType.StaticBody, 1,GROUND, PLAYER);
     }
 
+    public void movePlayer() {
+        if(Gdx.input.isKeyPressed(Input.Keys.A)) {
+            body.setLinearVelocity(-1f, 0f);
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.D)) {
+            body.setLinearVelocity(1f, 0f);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.W)) {
+            body.applyLinearImpulse(0f,5f,body.getPosition().x,body.getPosition().y,true);
+            body.setAngularVelocity(0f);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            body.setLinearVelocity(0f, 0f);
+        }
+    }
 
     @Override
     public void render(float delta) {
+        movePlayer();
         camera.update();
 
         world.step(delta,6,2);
