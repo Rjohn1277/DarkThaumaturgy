@@ -3,9 +3,14 @@ package Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.darkthaumaturgy.DarkThaumaturgy;
+
+import Helpers.Figures;
 
 public class MainGameScreen implements Screen{
     private static final String TAG = MainGameScreen.class.getSimpleName();
@@ -14,10 +19,18 @@ public class MainGameScreen implements Screen{
     private SpriteBatch batch;
     private Texture img;
 
+    //view
+    private OrthographicCamera camera;
+    private Viewport gameViewport;
 
     public MainGameScreen(DarkThaumaturgy game, SpriteBatch batch) {
         this.game = game;
         this.batch = batch;
+
+        camera = new OrthographicCamera();
+        gameViewport = new FitViewport(Figures.VIRTUALWIDTH,Figures.VIRTUALHEIGHT, camera);
+        camera.position.set(gameViewport.getWorldWidth()/2,gameViewport.getWorldHeight()/2,0);
+
     }
 
 
@@ -38,6 +51,9 @@ public class MainGameScreen implements Screen{
     @Override
     public void resize(int width, int height) {
         Gdx.app.log(TAG, "MainGame RESIZE");
+
+        gameViewport.update(width, height);
+
     }
 
     @Override
