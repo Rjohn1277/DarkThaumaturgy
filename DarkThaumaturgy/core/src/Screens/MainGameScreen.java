@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.darkthaumaturgy.DarkThaumaturgy;
 
 import Helpers.Figures;
+import Helpers.GameInput;
 
 public class MainGameScreen implements Screen{
     private static final String TAG = MainGameScreen.class.getSimpleName();
@@ -23,6 +24,9 @@ public class MainGameScreen implements Screen{
     private OrthographicCamera camera;
     private Viewport gameViewport;
 
+    //Controls
+    private GameInput gameInput;
+
     public MainGameScreen(DarkThaumaturgy game, SpriteBatch batch) {
         this.game = game;
         this.batch = batch;
@@ -30,6 +34,10 @@ public class MainGameScreen implements Screen{
         camera = new OrthographicCamera();
         gameViewport = new FitViewport(Figures.VIRTUALWIDTH,Figures.VIRTUALHEIGHT, camera);
         camera.position.set(gameViewport.getWorldWidth()/2,gameViewport.getWorldHeight()/2,0);
+
+        gameInput = new GameInput(gameViewport);
+
+        
 
     }
 
