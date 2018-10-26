@@ -1,5 +1,6 @@
 package Screens;
 
+import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -27,6 +28,9 @@ public class MainGameScreen implements Screen{
     //Controls
     private GameInput gameInput;
 
+    //Ashley
+    private PooledEngine engine;
+
     public MainGameScreen(DarkThaumaturgy game, SpriteBatch batch) {
         this.game = game;
         this.batch = batch;
@@ -37,7 +41,8 @@ public class MainGameScreen implements Screen{
 
         gameInput = new GameInput(gameViewport);
 
-        
+        engine = new PooledEngine(100, 500, 300,
+                1000);
 
     }
 
