@@ -8,7 +8,9 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.darkthaumaturgy.DarkThaumaturgy;
 
 import Components.BodyComponent;
+import Components.TypeComponent;
 import Helpers.BodyGenerator;
+import Helpers.Figures;
 
 public class EntityManager {
     private DarkThaumaturgy darkThaumaturgy;
@@ -39,12 +41,15 @@ public class EntityManager {
     private Entity addBodyComponent(Entity entity, String entityName, int x, int y) {
         BodyComponent bodyComponent = engine.createComponent(BodyComponent.class);
 
-        FixtureDef fedef = new FixtureDef();
+        FixtureDef fdef = new FixtureDef();
 
         //method used to build the body
         switch(entityName) {
             case "Player":
-                
+                fdef.filter.categoryBits = Figures.PLAYER;
+                fdef.filter.maskBits = Figures.ENEMY | Figures.LEVEL;
+
+                bodyComponent.setBody(generator.createBody(entity, x, y, 1, fdef));
         }
 
 

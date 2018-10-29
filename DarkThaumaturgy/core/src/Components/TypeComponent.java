@@ -3,15 +3,14 @@ package Components;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.utils.Pool;
 
+import Helpers.Figures;
+
 public class TypeComponent implements Component, Pool.Poolable{
 
-    private static final short OTHER = 2;
-    private static final short LEVEL = 4;
-    private static final short PLAYER = 8;
-    private static final short ENEMY = 16;
+
 
     //type components type
-    private short type = OTHER;
+    private short type = Figures.OTHER;
 
     public short getType() {
         return type;
@@ -23,6 +22,6 @@ public class TypeComponent implements Component, Pool.Poolable{
 
     @Override
     public void reset() {
-        type = OTHER;
+        type = Figures.OTHER;
     }
 }
