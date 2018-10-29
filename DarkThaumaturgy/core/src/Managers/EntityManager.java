@@ -3,6 +3,7 @@ package Managers;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.darkthaumaturgy.DarkThaumaturgy;
 
@@ -38,10 +39,12 @@ public class EntityManager {
     private Entity addBodyComponent(Entity entity, String entityName, int x, int y) {
         BodyComponent bodyComponent = engine.createComponent(BodyComponent.class);
 
+        FixtureDef fedef = new FixtureDef();
+
         //method used to build the body
         switch(entityName) {
             case "Player":
-
+                
         }
 
 
