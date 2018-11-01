@@ -1,5 +1,6 @@
 package Helpers;
 
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -9,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 
-import javax.swing.text.html.parser.Entity;
+
 
 public class BodyGenerator {
     private World world;
@@ -40,8 +41,9 @@ public class BodyGenerator {
         }
 
 
+
         bdef.gravityScale = 1;
-        body = world.createBody(bdef);
+
         Shape shape;
 
         switch(bodyType) {
@@ -49,20 +51,22 @@ public class BodyGenerator {
             default:
                 shape = new CircleShape();
                 shape.setRadius(dimensions.x/2);
-
+                bdef.position.set(dimensions.x/2,dimensions.x/2);
                 break;
             case 1:
                 shape = new PolygonShape();
                 ((PolygonShape)shape).setAsBox(dimensions.x/2, dimensions.y/2);
+                bdef.position.set(dimensions.x/2,dimensions.y/2);
                 break;
 
         }
-
+        body = world.createBody(bdef);
 
 
         fdef.shape = shape;
         fdef.density = 1f;
         fdef.restitution = .5f;
+        fdef.friction = 0;
         fdef.isSensor = false;
         body.createFixture(fdef).setUserData(entity);
 
