@@ -10,6 +10,9 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.darkthaumaturgy.DarkThaumaturgy;
 
 import Components.BodyComponent;
+import Components.CollisionComponent;
+import Components.PlayerComponent;
+import Components.StateComponent;
 import Components.TypeComponent;
 import Helpers.BodyGenerator;
 import Helpers.Figures;
@@ -42,6 +45,9 @@ public class EntityManager {
             case "Player":
             addBodyComponent(entity, entityName, x, y);
             addTypeComponent(entity, entityName);
+            addCollisionComponent(entity);
+            addPlayerComponent(entity);
+            addStateComponent(entity, entityName);
             break;
 
         }
@@ -53,7 +59,40 @@ public class EntityManager {
 
     }
 
+    private Entity addStateComponent(Entity entity, String entityName) {
+        StateComponent stateComponent = engine.createComponent(StateComponent.class);
 
+        switch(entityName) {
+            case "Player":
+                stateComponent.setDirection(StateComponent.DIRECTION.DOWN);
+                stateComponent.setState(StateComponent.STATE.IDLE);
+                break;
+        }
+
+        entity.add(stateComponent);
+        return entity;
+
+
+
+
+
+
+
+
+
+    }
+
+    private Entity addPlayerComponent(Entity entity) {
+        PlayerComponent playerComponent = engine.createComponent(PlayerComponent.class);
+        entity.add(playerComponent);
+        return entity;
+    }
+
+    private Entity addCollisionComponent(Entity entity) {
+        CollisionComponent collisionComponent = engine.createComponent(CollisionComponent.class);
+        entity.add(collisionComponent);
+        return entity;
+    }
 
     private Entity addBodyComponent(Entity entity, String entityName, int x, int y) {
         tempPositionVector.x = x;
