@@ -1,5 +1,7 @@
 package Helpers;
 
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.MathUtils;
@@ -7,15 +9,85 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-public class GameInput implements GestureDetector.GestureListener{
+public class GameInput extends InputAdapter implements GestureDetector.GestureListener{
     private OrthographicCamera camera;
     private Viewport gameViewport;
     private Vector3 touch;
+    private boolean left, right, up, down;
 
     public GameInput(Viewport gameViewport) {
+        super();
         this.gameViewport = gameViewport;
         camera = (OrthographicCamera) gameViewport.getCamera();
         touch = new Vector3(Vector3.Zero);
+    }
+
+    /*public void movePlayer() {
+     if(Gdx.input.isKeyPressed(Input.Keys.A)) {
+        body.setLinearVelocity(-1f,0f);
+     }
+     else if(Gdx.input.isKeyPressed(Input.Keys.D)) {
+        body.setLinearVelocity(1f,0f);
+     }
+     if(Gdx.input.isKeyPressed(Input.Keys.W)) {
+        body.applyLinearImpulse(0f,5f,body.getPosition().x,body.getPosition().y,true);
+        body.setAngularVelocity(0f);
+     }
+     if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+        body.setLinearVelocity(0f,0f);
+     }
+   } */
+
+    @Override
+    public boolean keyDown(int keycode) {
+        boolean keyProcessed = false;
+        switch(keycode) {
+            case Input.Keys.A:
+                left = true;
+                keyProcessed = true;
+                break;
+            case Input.Keys.D:
+                right = true;
+                keyProcessed = true;
+                break;
+            case Input.Keys.W:
+                up = true;
+                keyProcessed = true;
+                break;
+            case Input.Keys.S:
+                down = true;
+                keyProcessed = true;
+                break;
+        }
+
+
+
+
+        return keyProcessed;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        boolean keyProcessed = false;
+        switch(keycode) {
+            case Input.Keys.A:
+                left = false;
+                keyProcessed = true;
+                break;
+            case Input.Keys.D:
+                right = false;
+                keyProcessed = true;
+                break;
+            case Input.Keys.W:
+                up = false;
+                keyProcessed = true;
+                break;
+            case Input.Keys.S:
+                down = false;
+                keyProcessed = true;
+                break;
+        }
+        return super.keyUp(keycode);
     }
 
     @Override

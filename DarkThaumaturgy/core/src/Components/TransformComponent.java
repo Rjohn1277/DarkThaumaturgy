@@ -20,6 +20,11 @@ public class TransformComponent implements Component, Pool.Poolable{
         this.position = position;
     }
 
+    public void setPosition(Vector2 position) {
+        this.position.x = position.x;
+        this.position.y = position.y;
+    }
+
     public Vector2 getScale() {
         return scale;
     }
