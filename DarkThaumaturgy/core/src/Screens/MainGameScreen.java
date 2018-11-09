@@ -18,6 +18,7 @@ import Helpers.Figures;
 import Helpers.GameInput;
 import Systems.PhysicsDebugSystem;
 import Systems.PhysicsSystem;
+import Systems.PlayerControlSystem;
 
 public class MainGameScreen implements Screen{
     private static final String TAG = MainGameScreen.class.getSimpleName();
@@ -44,6 +45,7 @@ public class MainGameScreen implements Screen{
     private PooledEngine engine;
     private PhysicsSystem physicsSystem;
     private PhysicsDebugSystem physicsDebugSystem;
+    private PlayerControlSystem playerControlSystem;
 
     public MainGameScreen(DarkThaumaturgy game, SpriteBatch batch) {
         this.game = game;
@@ -69,6 +71,7 @@ public class MainGameScreen implements Screen{
 
         engine.addSystem(physicsSystem);
         engine.addSystem(physicsDebugSystem);
+        engine.addSystem(playerControlSystem);
 
 
 

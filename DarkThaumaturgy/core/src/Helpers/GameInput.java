@@ -22,21 +22,7 @@ public class GameInput extends InputAdapter implements GestureDetector.GestureLi
         touch = new Vector3(Vector3.Zero);
     }
 
-    /*public void movePlayer() {
-     if(Gdx.input.isKeyPressed(Input.Keys.A)) {
-        body.setLinearVelocity(-1f,0f);
-     }
-     else if(Gdx.input.isKeyPressed(Input.Keys.D)) {
-        body.setLinearVelocity(1f,0f);
-     }
-     if(Gdx.input.isKeyPressed(Input.Keys.W)) {
-        body.applyLinearImpulse(0f,5f,body.getPosition().x,body.getPosition().y,true);
-        body.setAngularVelocity(0f);
-     }
-     if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-        body.setLinearVelocity(0f,0f);
-     }
-   } */
+
 
     @Override
     public boolean keyDown(int keycode) {
@@ -142,4 +128,26 @@ public class GameInput extends InputAdapter implements GestureDetector.GestureLi
     public void pinchStop() {
 
     }
+
+
+    public boolean isLeft() {
+        return left;
+    }
+
+
+    public boolean isRight() {
+        return right;
+    }
+
+
+    public boolean isUp() {
+        return up;
+    }
+
+
+    public boolean isDown() {
+        return down;
+    }
+
+
 }
