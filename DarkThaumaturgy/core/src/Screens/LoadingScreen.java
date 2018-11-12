@@ -39,8 +39,8 @@ public class LoadingScreen implements Screen{
         batch.end();
 
         timeToWait-=delta;
-        Gdx.app.log(TAG, "time To Wait: " + timeToWait);
-        if(timeToWait<=0) {
+            Gdx.app.log(TAG, "time To Wait: " + timeToWait);
+            if(timeToWait<=0) {
 
             game.setScreen(DarkThaumaturgy.SCREENTYPE.MENU);
             timeToWait = 2f;

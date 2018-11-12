@@ -32,8 +32,8 @@ public class EntityManager {
     this.batch = batch;
     this.engine = engine;
     generator = new BodyGenerator(world);
-    tempPositionVector = Vector2.Zero;
-    tempDimensionVector = Vector2.Zero;
+    tempPositionVector = new Vector2(Vector2.Zero);
+    tempDimensionVector = new Vector2(Vector2.Zero);
 
 
     }

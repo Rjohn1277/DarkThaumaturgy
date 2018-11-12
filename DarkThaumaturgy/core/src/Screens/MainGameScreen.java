@@ -1,5 +1,6 @@
 package Screens;
 
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -16,6 +17,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import Helpers.Figures;
 import Helpers.GameInput;
+import Managers.EntityManager;
 import Systems.PhysicsDebugSystem;
 import Systems.PhysicsSystem;
 import Systems.PlayerControlSystem;
@@ -47,6 +49,10 @@ public class MainGameScreen implements Screen{
     private PhysicsDebugSystem physicsDebugSystem;
     private PlayerControlSystem playerControlSystem;
 
+    //Entity Manager
+    private EntityManager entityManager;
+    private Entity player;
+
     public MainGameScreen(DarkThaumaturgy game, SpriteBatch batch) {
         this.game = game;
         this.batch = batch;
@@ -62,12 +68,14 @@ public class MainGameScreen implements Screen{
         world = new World(Figures.GRAVITATIONAL_FORCES, true);
 
         initAshleySystems();
+        entityManager = new EntityManager(game, world, this.batch, engine);
 
     }
 
     public void initAshleySystems () {
         physicsSystem = new PhysicsSystem(world);
         physicsDebugSystem = new PhysicsDebugSystem(world, camera);
+        playerControlSystem = new PlayerControlSystem(gameInput);
 
         engine.addSystem(physicsSystem);
         engine.addSystem(physicsDebugSystem);
@@ -84,6 +92,8 @@ public class MainGameScreen implements Screen{
     @Override
     public void show() {
         Gdx.app.log(TAG, "MainGame SHOW");
+
+        player = entityManager.spawnEntity("Player", 8,5);
 
     }
 
