@@ -1,6 +1,7 @@
 package Helpers;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -27,6 +28,7 @@ public class BodyGenerator {
         FixtureDef fdef = fixtureDef;
 
 
+
         switch(type) {
             case StaticBody:
                 bdef.type = BodyDef.BodyType.StaticBody;
@@ -42,6 +44,7 @@ public class BodyGenerator {
 
 
         bdef.position.set(position.x+dimensions.x/2,position.y+dimensions.y/2);
+        Gdx.app.log("Body Generator", bdef.position.toString());
         bdef.gravityScale = 1;
 
         Shape shape;
@@ -56,7 +59,7 @@ public class BodyGenerator {
             case 1:
                 shape = new PolygonShape();
                 ((PolygonShape)shape).setAsBox(dimensions.x/2, dimensions.y/2);
-                bdef.position.set(dimensions.x/2,dimensions.y/2);
+                bdef.position.set(position.x+dimensions.x/2,position.y+dimensions.y/2);
                 break;
 
         }

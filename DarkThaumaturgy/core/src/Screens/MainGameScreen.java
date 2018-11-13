@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.darkthaumaturgy.DarkThaumaturgy;
 import com.badlogic.gdx.physics.box2d.World;
 
+import Components.BodyComponent;
 import Helpers.Figures;
 import Helpers.GameInput;
 import Managers.EntityManager;
@@ -100,10 +101,12 @@ public class MainGameScreen implements Screen{
     @Override
     public void render(float delta) {
         Gdx.app.log(TAG, "MainGame RENDER");
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         engine.update(delta);
+
+        Gdx.app.log(TAG, player.getComponent(BodyComponent.class).getBody().getPosition().toString());
 
     }
 

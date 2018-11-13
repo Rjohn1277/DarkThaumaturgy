@@ -2,6 +2,7 @@ package Managers;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -97,6 +98,7 @@ public class EntityManager {
     private Entity addBodyComponent(Entity entity, String entityName, int x, int y) {
         tempPositionVector.x = x;
         tempPositionVector.y = y;
+        Gdx.app.log("Entity Manager", tempPositionVector.toString());
         BodyComponent bodyComponent = engine.createComponent(BodyComponent.class);
         FixtureDef fdef = new FixtureDef();
 
@@ -110,7 +112,7 @@ public class EntityManager {
 
                 bodyComponent.setBody(generator.createBody(entity, tempPositionVector,
                         tempDimensionVector, BodyDef.BodyType.DynamicBody,1, fdef));
-
+                Gdx.app.log("Entity Manager", tempPositionVector.toString() + ": " + tempDimensionVector.toString());
                 bodyComponent.setActive(true);
                 bodyComponent.getBody().setLinearDamping(3f);
                 bodyComponent.getBody().setUserData(entity);
