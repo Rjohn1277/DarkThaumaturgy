@@ -93,6 +93,7 @@ public class MainGameScreen implements Screen{
     @Override
     public void show() {
         Gdx.app.log(TAG, "MainGame SHOW");
+        Gdx.input.setInputProcessor(gameInput);
 
         player = entityManager.spawnEntity("Player", 8,5);
 
@@ -106,7 +107,6 @@ public class MainGameScreen implements Screen{
 
         engine.update(delta);
 
-        Gdx.app.log(TAG, player.getComponent(BodyComponent.class).getBody().getPosition().toString());
 
     }
 

@@ -98,7 +98,6 @@ public class EntityManager {
     private Entity addBodyComponent(Entity entity, String entityName, int x, int y) {
         tempPositionVector.x = x;
         tempPositionVector.y = y;
-        Gdx.app.log("Entity Manager", tempPositionVector.toString());
         BodyComponent bodyComponent = engine.createComponent(BodyComponent.class);
         FixtureDef fdef = new FixtureDef();
 
@@ -112,7 +111,6 @@ public class EntityManager {
 
                 bodyComponent.setBody(generator.createBody(entity, tempPositionVector,
                         tempDimensionVector, BodyDef.BodyType.DynamicBody,1, fdef));
-                Gdx.app.log("Entity Manager", tempPositionVector.toString() + ": " + tempDimensionVector.toString());
                 bodyComponent.setActive(true);
                 bodyComponent.getBody().setLinearDamping(3f);
                 bodyComponent.getBody().setUserData(entity);
