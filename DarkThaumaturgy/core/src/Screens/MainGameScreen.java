@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.darkthaumaturgy.DarkThaumaturgy;
@@ -18,6 +19,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import Components.BodyComponent;
 import Helpers.Figures;
 import Helpers.GameInput;
+import Helpers.LevelCollisionGenerator;
+import Managers.CollisionManager;
 import Managers.EntityManager;
 import Systems.PhysicsDebugSystem;
 import Systems.PhysicsSystem;
@@ -35,6 +38,8 @@ public class MainGameScreen implements Screen{
     private Body body;
     private Body body2;
     private Vector2 gravitationalForces;
+    private CollisionManager collisionManager;
+
     private float random;
 
     //view
@@ -54,9 +59,20 @@ public class MainGameScreen implements Screen{
     private EntityManager entityManager;
     private Entity player;
 
+    //Level Generator
+    private LevelCollisionGenerator levelCollisionGenerator;
+    private Entity ground;
+
+    //temp variables for optimization
+    private Vector2 tempPosition;
+    private Vector2 tempDimensions;
+
     public MainGameScreen(DarkThaumaturgy game, SpriteBatch batch) {
         this.game = game;
         this.batch = batch;
+
+        tempDimensions = new Vector2(Vector2.Zero);
+        tempPosition = new Vector2(Vector2.Zero);
 
         camera = new OrthographicCamera();
         gameViewport = new FitViewport(Figures.VIRTUALWIDTH,Figures.VIRTUALHEIGHT, camera);
@@ -67,9 +83,12 @@ public class MainGameScreen implements Screen{
         engine = new PooledEngine(100, 500, 300,
                 1000);
         world = new World(Figures.GRAVITATIONAL_FORCES, true);
+        collisionManager = new CollisionManager();
+        world.setContactListener(collisionManager);
 
         initAshleySystems();
         entityManager = new EntityManager(game, world, this.batch, engine);
+        levelCollisionGenerator = new LevelCollisionGenerator(world, engine);
 
     }
 
@@ -96,6 +115,14 @@ public class MainGameScreen implements Screen{
         Gdx.input.setInputProcessor(gameInput);
 
         player = entityManager.spawnEntity("Player", 8,5);
+
+        //temp test of level generation
+        tempPosition.x = 1;
+        tempPosition.y = 1;
+        tempDimensions.x = camera.viewportWidth-1;
+        tempDimensions.y = 1;
+        ground = levelCollisionGenerator.createCollisionLevel(tempPosition, tempDimensions,
+                BodyDef.BodyType.StaticBody,1);
 
     }
 
