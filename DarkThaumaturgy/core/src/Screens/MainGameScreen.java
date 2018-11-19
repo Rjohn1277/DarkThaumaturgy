@@ -117,10 +117,12 @@ public class MainGameScreen implements Screen{
         player = entityManager.spawnEntity("Player", 8,5);
 
         //temp test of level generation
-        tempPosition.x = 1;
+        tempPosition.x = 8;
         tempPosition.y = 1;
-        tempDimensions.x = camera.viewportWidth-1;
+        tempDimensions.x = 16;
         tempDimensions.y = 1;
+
+        Gdx.app.log(TAG,""+camera.viewportWidth);
         ground = levelCollisionGenerator.createCollisionLevel(tempPosition, tempDimensions,
                 BodyDef.BodyType.StaticBody,1);
 
