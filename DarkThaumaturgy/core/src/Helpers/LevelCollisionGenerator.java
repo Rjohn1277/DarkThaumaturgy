@@ -4,13 +4,18 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.CircleMapObject;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
+import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.objects.TextureMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -88,7 +93,6 @@ public class LevelCollisionGenerator {
 
 
 
-
             bdef.gravityScale = 1;
 
 
@@ -147,14 +151,51 @@ public class LevelCollisionGenerator {
         Vector2 size = new Vector2(rectangle.x+rectangle.width/2,rectangle.y+rectangle.height/2);
         polygon.setAsBox(rectangle.width/2,rectangle.height/2,size,0.0f);
 
+        return new LevelGeometry(polygon);
 
 
 
-                /*shape = new PolygonShape();
-        ((PolygonShape)shape).setAsBox(dimensions.x/2, dimensions.y/2);
-        bdef.position.set(position.x+dimensions.x/2,position.y+dimensions.y/2);
-        break;*/
     }
+    private LevelGeometry getPolygon(PolygonMapObject polygonMapObject) {
+        PolygonShape polygon = polygonMapObject.getPolygon();
+        float[]vertices = polygonMapObject.getPolygon().getTransformedVertices();
+
+        //todo fix any errors with polygon shapes if there are any
+        polygon.set(vertices);
+
+        return new LevelGeometry(polygon);
+
+    }
+    private LevelGeometry getPolyline(PolylineMapObject polylineMapObject) {
+        float[]vertices = polylineMapObject.getPolyline().getTransformedVertices();
+        Vector2[]worldVertices = new Vector2[vertices.length/2];
+
+        for(int i;i<vertices.length;i++) {
+            worldVertices[i]= new Vector2();
+            worldVertices[i].x = vertices[i*2];
+            worldVertices[i].y = vertices[i*2+1];
+        }
+
+        ChainShape chain = new ChainShape();
+        chain.createChain(worldVertices);
+
+        return new LevelGeometry(chain);
+
+    }
+    private LevelGeometry getCircle(CircleMapObject circleMapObject) {
+        Circle circle = circleMapObject.getCircle();
+        CircleShape circleShape = new CircleShape();
+        circleShape.setRadius(circle.radius);
+        circleShape.setPosition(new Vector2(circle.x,circle.y));
+
+        return new LevelGeometry(circleShape);
+
+
+
+    }
+
+
+
 
     public static class LevelGeometry {
         private Shape shape;
