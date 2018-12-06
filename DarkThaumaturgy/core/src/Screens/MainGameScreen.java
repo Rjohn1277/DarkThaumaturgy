@@ -8,6 +8,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -62,6 +66,8 @@ public class MainGameScreen implements Screen{
     //Level Generator
     private LevelCollisionGenerator levelCollisionGenerator;
     private Entity ground;
+    private OrthogonalTiledMapRenderer mapRenderer;
+    private TiledMap map;
 
     //temp variables for optimization
     private Vector2 tempPosition;
@@ -89,6 +95,12 @@ public class MainGameScreen implements Screen{
         initAshleySystems();
         entityManager = new EntityManager(game, world, this.batch, engine);
         levelCollisionGenerator = new LevelCollisionGenerator(world, engine);
+
+        //todo need to change how map is loaded when implementing asset manager
+        map = new TmxMapLoader().load("TestMap.tmx");
+        mapRenderer = new OrthogonalTiledMapRenderer(map, this.batch);
+
+        levelCollisionGenerator.createCollisionLevel(map);
 
     }
 
@@ -123,8 +135,8 @@ public class MainGameScreen implements Screen{
         tempDimensions.y = 1;
 
 
-        ground = levelCollisionGenerator.createCollisionLevel(tempPosition, tempDimensions,
-                BodyDef.BodyType.StaticBody,1);
+
+
 
     }
 
@@ -134,6 +146,7 @@ public class MainGameScreen implements Screen{
         Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        mapRenderer.render();
         engine.update(delta);
 
 

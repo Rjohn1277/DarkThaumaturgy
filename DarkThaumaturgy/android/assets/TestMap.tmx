@@ -105,12 +105,6 @@
     <property name="Type" value="StaticBody"/>
    </properties>
   </object>
-  <object id="15" x="16" y="8">
-   <properties>
-    <property name="Type" value="StaticBody"/>
-   </properties>
-   <polyline points="0,0 0,8 -8,8 -8,616 0,616.091 0,624 608,624.182 607.909,0.0909091 0,0"/>
-  </object>
   <object id="21" x="352" y="48" width="16" height="16">
    <properties>
     <property name="Type" value="StaticBody"/>
