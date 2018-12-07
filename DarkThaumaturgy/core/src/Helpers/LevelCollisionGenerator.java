@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.CircleMapObject;
+import com.badlogic.gdx.maps.objects.EllipseMapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -86,6 +87,11 @@ public class LevelCollisionGenerator {
             } else if (object instanceof CircleMapObject) {
                 geometry = getCircle((CircleMapObject) object);
                 shape = geometry.getShape();
+            } else if (object instanceof EllipseMapObject) {
+                if(((EllipseMapObject) object).getEllipse().height==((EllipseMapObject) object).getEllipse().width) {
+                    geometry = getCircle((CircleMapObject) object);
+                    shape = geometry.getShape();
+                }
             } else {
                 Gdx.app.log(TAG, "Unrecognized map shape" + object.toString());
                 continue;
@@ -161,7 +167,6 @@ public class LevelCollisionGenerator {
             worldVertices[i]= new Vector2();
             worldVertices[i].x = vertices[i*2];
             worldVertices[i].y = vertices[i*2+1];
-            Gdx.app.log(TAG,"Get Polyline for loop" + vertices[i]);
         }
 
         ChainShape chain = new ChainShape();
