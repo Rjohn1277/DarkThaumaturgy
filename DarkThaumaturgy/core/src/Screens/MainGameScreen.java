@@ -142,6 +142,13 @@ public class MainGameScreen implements Screen{
 
     @Override
     public void render(float delta) {
+        camera.position.set(player.getComponent(BodyComponent.class).getBody().getPosition());
+
+
+
+
+
+
         Gdx.app.log(TAG, "MainGame RENDER");
         Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
