@@ -29,7 +29,7 @@ public class MainMenuScreen implements Screen{
     @Override
     public void render(float delta) {
         Gdx.app.log(TAG, "MainMenu RENDER");
-        Gdx.gl.glClearColor(0, 1, 1, 1);
+        Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         timeToWait-=delta;
