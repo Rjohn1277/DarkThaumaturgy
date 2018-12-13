@@ -25,22 +25,22 @@ public class PlayerControlSystem extends IteratingSystem {
 
 
         if(gameInput.isLeft()) {
-            bodyComponent.getBody().setLinearVelocity(-10f,0f);
+            bodyComponent.getBody().setLinearVelocity(-1f,0f);
             stateComponent.setDirection(StateComponent.DIRECTION.LEFT);
             stateComponent.setState(StateComponent.STATE.MOVING);
         }
         if(gameInput.isUp()) {
-            bodyComponent.getBody().setLinearVelocity(0f,10f);
+            bodyComponent.getBody().setLinearVelocity(0f,1f);
             stateComponent.setDirection(StateComponent.DIRECTION.UP);
             stateComponent.setState(StateComponent.STATE.MOVING);
         }
         if(gameInput.isRight()) {
-            bodyComponent.getBody().setLinearVelocity(10f,0f);
+            bodyComponent.getBody().setLinearVelocity(1f,0f);
             stateComponent.setDirection(StateComponent.DIRECTION.RIGHT);
             stateComponent.setState(StateComponent.STATE.MOVING);
         }
         if(gameInput.isDown()) {
-            bodyComponent.getBody().setLinearVelocity(0f,-10f);
+            bodyComponent.getBody().setLinearVelocity(0f,-1f);
             stateComponent.setDirection(StateComponent.DIRECTION.DOWN);
             stateComponent.setState(StateComponent.STATE.MOVING);
         }

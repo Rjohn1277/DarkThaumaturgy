@@ -186,7 +186,7 @@ public class LevelCollisionGenerator {
         float[]vertices = polylineMapObject.getPolyline().getTransformedVertices();
         Vector2[]worldVertices = new Vector2[vertices.length/2];
 
-        for(int i=0;i<vertices.length;i++) {
+        for(int i=0;i<worldVertices.length;i++) {
             worldVertices[i]= new Vector2();
             worldVertices[i].x = vertices[i*2]/Figures.PPM;
             worldVertices[i].y = vertices[i*2+1]/Figures.PPM;

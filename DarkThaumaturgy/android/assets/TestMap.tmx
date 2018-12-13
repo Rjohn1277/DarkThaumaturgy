@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextobjectid="83">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextobjectid="100">
  <tileset firstgid="1" source="testTileSet.tsx"/>
  <layer name="Ground_Layer" width="40" height="40">
   <data encoding="csv">
@@ -93,19 +93,8 @@
   <properties>
    <property name="Spawn" value="Player"/>
   </properties>
-  <object id="58" x="16" y="8">
-   <properties>
-    <property name="Type" value="StaticBody"/>
-   </properties>
-   <polyline points="0,0 0.0909091,8.09091 -8,8.09091 -7.87784,616.06 0.0909091,616.028 0.153409,624.06 608.091,624.06 608.091,0.0909091 0.122159,0.0596591"/>
-  </object>
  </objectgroup>
  <objectgroup name="COLLISION_LAYER">
-  <object id="7" x="260.067" y="630.467" width="0.0222222">
-   <properties>
-    <property name="Type" value="StaticBody"/>
-   </properties>
-  </object>
   <object id="21" x="352" y="48" width="16" height="16">
    <properties>
     <property name="Type" value="StaticBody"/>
@@ -161,17 +150,23 @@
     <property name="Type" value="StaticBody"/>
    </properties>
   </object>
-  <object id="80" x="144" y="128">
+  <object id="94" x="448" y="400">
    <properties>
-    <property name="Type" value="StaticBod"/>
+    <property name="Type" value="StaticB"/>
    </properties>
-   <polyline points="0,0 112,0 112,16 128,16 128,32 144,32 144,48 160,48 160,128 144,128 144,144 144,160 128,160 128,176 112,176 112,192 16,192 16,176 0,176 0,160 -16,160 -16,144 -32,144 -32,32 -16,32 -16,16 0,16 0,0"/>
+   <polyline points="0,0 0,16 -64,16 -64,-144 112,-144 112,16 32,16 32,0 96,0 96,-128 -48,-128 -48,0 0,0"/>
   </object>
-  <object id="82" x="384" y="256">
+  <object id="98" x="112" y="160">
    <properties>
     <property name="Type" value="StaticBody"/>
    </properties>
-   <polyline points="0,0 176,0 176,160 96,160 96,144 160,144 160,16 16,16 16,144 64,144 64,160 0,160 0,0"/>
+   <polyline points="0,0 0,112 16,112 16,128 32,128 32,144 48,144 48,160 144,160 144,144 160,144 160,128 176,128 176,96 192,96 192,16 176,16 176,0 160,0 160,-16 144,-16 144,-32 32,-32 32,-16 16,-16 16,0 0,0"/>
+  </object>
+  <object id="99" x="16" y="8">
+   <properties>
+    <property name="Type" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 0,7.63636 -8,8 -8.18182,616 -0.181818,616 0,624 607.636,623.818 607.818,0.181818 -0.363636,-0.181818"/>
   </object>
  </objectgroup>
 </map>

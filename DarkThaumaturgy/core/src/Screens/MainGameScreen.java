@@ -96,9 +96,9 @@ public class MainGameScreen implements Screen{
         entityManager = new EntityManager(game, world, this.batch, engine);
         levelCollisionGenerator = new LevelCollisionGenerator(world, engine);
 
-        //todo need to change how map is loaded when implementing asset manager
+        //todo need to change how map is loaded when implementing asset management
         map = new TmxMapLoader().load("TestMap.tmx");
-        mapRenderer = new OrthogonalTiledMapRenderer(map, this.batch);
+        mapRenderer = new OrthogonalTiledMapRenderer(map, 1/Figures.PPM,this.batch);
 
         levelCollisionGenerator.createCollisionLevel(map);
 
@@ -153,6 +153,7 @@ public class MainGameScreen implements Screen{
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        mapRenderer.setView((OrthographicCamera)gameViewport.getCamera());
         mapRenderer.render();
         engine.update(delta);
 
