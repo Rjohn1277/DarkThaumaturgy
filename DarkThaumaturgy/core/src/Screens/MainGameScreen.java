@@ -126,8 +126,8 @@ public class MainGameScreen implements Screen{
         Gdx.app.log(TAG, "MainGame SHOW");
         Gdx.input.setInputProcessor(gameInput);
 
-        player = entityManager.spawnEntity("Player", 8,5);
-
+        //player = entityManager.spawnEntity("Player", 8,5);
+        entityManager.spawnEntities(map);
         //temp test of level generation
         tempPosition.x = 0;
         tempPosition.y = 1;
@@ -142,7 +142,7 @@ public class MainGameScreen implements Screen{
 
     @Override
     public void render(float delta) {
-        camera.position.set(player.getComponent(BodyComponent.class).getBody().getPosition(),0);
+        //camera.position.set(player.getComponent(BodyComponent.class).getBody().getPosition(),0);
         camera.update();
 
 
