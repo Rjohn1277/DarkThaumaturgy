@@ -50,8 +50,8 @@ public class EntityManager {
 
         for(MapObject object: layer.getObjects()) {
             String entityName = object.getProperties().get("Spawn", String.class);
-            int x = (int) object.getProperties().get("x");
-            int y = (int) object.getProperties().get("y");
+            int x = object.getProperties().get("x", Float.class).intValue();
+            int y = object.getProperties().get("y", Float.class).intValue();
 
             entities.add(spawnEntity(entityName,x,y));
         }
