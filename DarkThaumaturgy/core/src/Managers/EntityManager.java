@@ -39,6 +39,7 @@ public class EntityManager {
     this.world = world;
     this.batch = batch;
     this.engine = engine;
+    entities = new ArrayList<Entity>();
     generator = new BodyGenerator(world);
     tempPositionVector = new Vector2(Vector2.Zero);
     tempDimensionVector = new Vector2(Vector2.Zero);
@@ -70,6 +71,12 @@ public class EntityManager {
             addPlayerComponent(entity);
             addStateComponent(entity, entityName);
             break;
+
+            case "Enemy":
+                addBodyComponent()
+                break;
+            case "Coin":
+                break;
 
         }
 
