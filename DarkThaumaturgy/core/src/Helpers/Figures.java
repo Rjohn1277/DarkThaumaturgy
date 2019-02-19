@@ -13,6 +13,7 @@ public class Figures {
     public static final short LEVEL = 4;
     public static final short PLAYER = 8;
     public static final short ENEMY = 16;
+    public static final short COIN = 32;
 
     //World gravity
     public static final Vector2 GRAVITATIONAL_FORCES = new Vector2(0,0);

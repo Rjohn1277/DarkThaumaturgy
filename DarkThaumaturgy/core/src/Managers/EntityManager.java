@@ -73,9 +73,15 @@ public class EntityManager {
             break;
 
             case "Enemy":
-                addBodyComponent()
+                addBodyComponent(entity, entityName, x, y);
+                addTypeComponent(entity, entityName);
+                addCollisionComponent(entity);
+                addStateComponent(entity, entityName);
                 break;
             case "Coin":
+                addBodyComponent(entity, entityName, x, y);
+                addTypeComponent(entity, entityName);
+
                 break;
 
         }
@@ -95,6 +101,10 @@ public class EntityManager {
                 stateComponent.setDirection(StateComponent.DIRECTION.DOWN);
                 stateComponent.setState(StateComponent.STATE.IDLE);
                 break;
+
+            case "Enemy":
+                stateComponent.setDirection(StateComponent.DIRECTION.DOWN);
+                stateComponent.setState(StateComponent.STATE.IDLE);
         }
 
         entity.add(stateComponent);
@@ -132,7 +142,7 @@ public class EntityManager {
         switch(entityName) {
             case "Player":
                 fdef.filter.categoryBits = Figures.PLAYER;
-                fdef.filter.maskBits = Figures.ENEMY | Figures.LEVEL;
+                fdef.filter.maskBits = Figures.ENEMY | Figures.LEVEL | Figures.COIN;
                 tempDimensionVector.x = 1;
                 tempDimensionVector.y = 1;
 
@@ -142,6 +152,32 @@ public class EntityManager {
                 bodyComponent.getBody().setLinearDamping(3f);
                 bodyComponent.getBody().setUserData(entity);
                 break;
+
+            case "Enemy":
+                fdef.filter.categoryBits = Figures.ENEMY;
+                fdef.filter.maskBits = Figures.ENEMY | Figures.LEVEL | Figures.PLAYER;
+                tempDimensionVector.x = 1;
+                tempDimensionVector.y = 1;
+
+                bodyComponent.setBody(generator.createBody(entity, tempPositionVector,
+                        tempDimensionVector, BodyDef.BodyType.DynamicBody,1, fdef));
+                bodyComponent.setActive(true);
+                bodyComponent.getBody().setLinearDamping(3f);
+                bodyComponent.getBody().setUserData(entity);
+                break;
+            case "Coin":
+                fdef.filter.categoryBits = Figures.COIN;
+                fdef.filter.maskBits = Figures.LEVEL | Figures.PLAYER;
+                tempDimensionVector.x = 1;
+                tempDimensionVector.y = 1;
+
+                bodyComponent.setBody(generator.createBody(entity, tempPositionVector,
+                        tempDimensionVector, BodyDef.BodyType.DynamicBody,1, fdef));
+                bodyComponent.setActive(true);
+                //bodyComponent.getBody().setLinearDamping(3f);
+                bodyComponent.getBody().setUserData(entity);
+                break;
+
         }
 
 
@@ -156,9 +192,17 @@ public class EntityManager {
             case "Player":
                 type = Figures.PLAYER;
                 break;
+
+            case "Enemy":
+                type = Figures.ENEMY;
+                break;
+
+            case "Coin":
+                type = Figures.COIN;
+                break;
             default:
                 type = Figures.OTHER;
-                break;
+
         }
         typeComponent.setType(type);
         entity.add(typeComponent);

@@ -65,6 +65,8 @@ public class CollisionSystem extends IteratingSystem {
                 case Figures.LEVEL:
                     Gdx.app.log(TAG, "LEVEL");
                     break;
+                    case Figures.COIN:
+                        Gdx.app.log(TAG, "COIN");
                 case Figures.OTHER:
                     Gdx.app.log(TAG, "OTHER");
                     break;
