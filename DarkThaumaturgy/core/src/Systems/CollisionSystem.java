@@ -21,14 +21,12 @@ public class CollisionSystem extends IteratingSystem {
 
     private PooledEngine engine;
     private World world;
-    private Entity player;
     private DarkThaumaturgy game;
 
-    public CollisionSystem(PooledEngine engine, World world, Entity player, DarkThaumaturgy game) {
+    public CollisionSystem(PooledEngine engine, World world, DarkThaumaturgy game) {
         super(Family.all(CollisionComponent.class).get());
         this.engine = engine;
         this.world = world;
-        this.player = player;
         this.game = game;
     }
 

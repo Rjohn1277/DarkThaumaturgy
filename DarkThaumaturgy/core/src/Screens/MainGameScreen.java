@@ -1,6 +1,7 @@
 package Screens;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -21,11 +22,13 @@ import com.darkthaumaturgy.DarkThaumaturgy;
 import com.badlogic.gdx.physics.box2d.World;
 
 import Components.BodyComponent;
+import Components.PlayerComponent;
 import Helpers.Figures;
 import Helpers.GameInput;
 import Helpers.LevelCollisionGenerator;
 import Managers.CollisionManager;
 import Managers.EntityManager;
+import Systems.CollisionSystem;
 import Systems.PhysicsDebugSystem;
 import Systems.PhysicsSystem;
 import Systems.PlayerControlSystem;
@@ -58,6 +61,7 @@ public class MainGameScreen implements Screen{
     private PhysicsSystem physicsSystem;
     private PhysicsDebugSystem physicsDebugSystem;
     private PlayerControlSystem playerControlSystem;
+    private CollisionSystem collisionSystem;
 
     //Entity Manager
     private EntityManager entityManager;
@@ -108,10 +112,12 @@ public class MainGameScreen implements Screen{
         physicsSystem = new PhysicsSystem(world);
         physicsDebugSystem = new PhysicsDebugSystem(world, camera);
         playerControlSystem = new PlayerControlSystem(gameInput);
+        collisionSystem = new CollisionSystem(engine, world, game);
 
         engine.addSystem(physicsSystem);
         engine.addSystem(physicsDebugSystem);
         engine.addSystem(playerControlSystem);
+        engine.addSystem(collisionSystem);
 
 
 
@@ -119,7 +125,15 @@ public class MainGameScreen implements Screen{
 
     }
 
+    private void updateCamera() {
+        for(Entity player: engine.getEntitiesFor(Family.all(PlayerComponent.class).get())) {
+            BodyComponent bodyComponent = player.getComponent(BodyComponent.class);
+            camera.position.set(bodyComponent.getBody().getPosition(),0);
+        }
 
+        camera.update();
+
+    }
 
     @Override
     public void show() {
@@ -144,6 +158,8 @@ public class MainGameScreen implements Screen{
     public void render(float delta) {
         //camera.position.set(player.getComponent(BodyComponent.class).getBody().getPosition(),0);
         camera.update();
+
+        //updateCamera();
 
 
 
