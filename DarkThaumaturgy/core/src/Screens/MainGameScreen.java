@@ -157,9 +157,9 @@ public class MainGameScreen implements Screen{
     @Override
     public void render(float delta) {
         //camera.position.set(player.getComponent(BodyComponent.class).getBody().getPosition(),0);
-        camera.update();
+        //camera.update();
 
-        //updateCamera();
+        updateCamera();
 
 
 

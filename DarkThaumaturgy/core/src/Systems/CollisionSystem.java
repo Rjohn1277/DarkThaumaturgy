@@ -99,6 +99,7 @@ public class CollisionSystem extends IteratingSystem {
                     break;
             }
         }
+        collision.setCollidedEntity(null);
 
     }
 }
