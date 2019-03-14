@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.darkthaumaturgy.DarkThaumaturgy;
 
+import Managers.MyAssetManager;
+
 public class MainMenuScreen implements Screen{
     private static final String TAG = MainMenuScreen.class.getSimpleName();
 
@@ -14,10 +16,12 @@ public class MainMenuScreen implements Screen{
     private SpriteBatch batch;
     private Texture img;
     private float timeToWait = 2f;
+    private MyAssetManager myAssetManager;
 
-    public MainMenuScreen(DarkThaumaturgy game, SpriteBatch batch) {
+    public MainMenuScreen(DarkThaumaturgy game, SpriteBatch batch, MyAssetManager myAssetManager) {
         this.game = game;
         this.batch = batch;
+        this.myAssetManager = myAssetManager;
         Gdx.app.log(TAG, "MainMenu Constructor");
     }
 
@@ -28,7 +32,7 @@ public class MainMenuScreen implements Screen{
 
     @Override
     public void render(float delta) {
-        Gdx.app.log(TAG, "MainMenu RENDER");
+        //Gdx.app.log(TAG, "MainMenu RENDER");
         Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 

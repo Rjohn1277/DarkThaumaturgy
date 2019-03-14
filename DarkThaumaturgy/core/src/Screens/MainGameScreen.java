@@ -28,6 +28,7 @@ import Helpers.GameInput;
 import Helpers.LevelCollisionGenerator;
 import Managers.CollisionManager;
 import Managers.EntityManager;
+import Managers.MyAssetManager;
 import Systems.CollisionSystem;
 import Systems.PhysicsDebugSystem;
 import Systems.PhysicsSystem;
@@ -38,7 +39,7 @@ public class MainGameScreen implements Screen{
 
     private DarkThaumaturgy game;
     private SpriteBatch batch;
-    private Texture img;
+    private MyAssetManager myAssetManager;
 
     //box2d
     private World world;
@@ -77,9 +78,10 @@ public class MainGameScreen implements Screen{
     private Vector2 tempPosition;
     private Vector2 tempDimensions;
 
-    public MainGameScreen(DarkThaumaturgy game, SpriteBatch batch) {
+    public MainGameScreen(DarkThaumaturgy game, SpriteBatch batch, MyAssetManager myAssetManager) {
         this.game = game;
         this.batch = batch;
+        this.myAssetManager = myAssetManager;
 
         tempDimensions = new Vector2(Vector2.Zero);
         tempPosition = new Vector2(Vector2.Zero);
@@ -101,7 +103,7 @@ public class MainGameScreen implements Screen{
         levelCollisionGenerator = new LevelCollisionGenerator(world, engine);
 
         //todo need to change how map is loaded when implementing asset management
-        map = new TmxMapLoader().load("TestMap.tmx");
+        map = myAssetManager.getMapAsset("TestMap.tmx");
         mapRenderer = new OrthogonalTiledMapRenderer(map, 1/Figures.PPM,this.batch);
 
         levelCollisionGenerator.createCollisionLevel(map);
@@ -165,7 +167,7 @@ public class MainGameScreen implements Screen{
 
 
 
-        Gdx.app.log(TAG, "MainGame RENDER");
+        //Gdx.app.log(TAG, "MainGame RENDER");
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 

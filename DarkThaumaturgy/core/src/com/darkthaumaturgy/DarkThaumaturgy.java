@@ -5,12 +5,14 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Hashtable;
 
+import Managers.MyAssetManager;
 import Screens.CreditScreen;
 import Screens.LoadingScreen;
 import Screens.MainGameScreen;
@@ -42,24 +44,24 @@ public class DarkThaumaturgy extends Game {
 		switch(type){
 			case LOAD:
 				if(loadingScreen == null) {
-					loadingScreen = new LoadingScreen(this, batch);
+					loadingScreen = new LoadingScreen(this, batch, myAssetManager);
 					screenTable.put(SCREENTYPE.LOAD, loadingScreen);
 				}
 				break;
 			case MENU:
 				if(mainMenuScreen == null) {
-					mainMenuScreen = new MainMenuScreen(this, batch);
+					mainMenuScreen = new MainMenuScreen(this, batch, myAssetManager);
 					screenTable.put(SCREENTYPE.MENU, mainMenuScreen);
 				}
 				break;
 			case GAME:
 				if(mainGameScreen == null) {
-					mainGameScreen = new MainGameScreen(this, batch);
+					mainGameScreen = new MainGameScreen(this, batch, myAssetManager);
 					screenTable.put(SCREENTYPE.GAME, mainGameScreen);
 				}
 			case CREDITS:
 				if(creditScreen == null) {
-					creditScreen = new CreditScreen(this, batch);
+					creditScreen = new CreditScreen(this, batch, myAssetManager);
 					screenTable.put(SCREENTYPE.CREDITS, creditScreen);
 				}
 		}
@@ -76,7 +78,8 @@ public class DarkThaumaturgy extends Game {
         Gdx.app.log(TAG, "In create method of main game class");
 		screenTable = new Hashtable<SCREENTYPE, Screen>();
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		assetManager = new AssetManager(new InternalFileHandleResolver());
+		myAssetManager = new MyAssetManager(assetManager);
 
 		setScreen(SCREENTYPE.LOAD);
 
@@ -95,6 +98,5 @@ public class DarkThaumaturgy extends Game {
 	@Override
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
 	}
 }

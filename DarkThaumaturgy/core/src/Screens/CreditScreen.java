@@ -5,15 +5,19 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.darkthaumaturgy.DarkThaumaturgy;
 
+import Managers.MyAssetManager;
+
 public class CreditScreen implements Screen{
 
     private DarkThaumaturgy game;
     private SpriteBatch batch;
+    private MyAssetManager myAssetManager;
     private Texture img;
 
-    public CreditScreen(DarkThaumaturgy game, SpriteBatch batch) {
+    public CreditScreen(DarkThaumaturgy game, SpriteBatch batch, MyAssetManager myAssetManager) {
         this.game = game;
         this.batch = batch;
+        this.myAssetManager = myAssetManager;
     }
 
     @Override
