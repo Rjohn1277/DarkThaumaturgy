@@ -15,6 +15,7 @@ import com.darkthaumaturgy.DarkThaumaturgy;
 
 import java.util.ArrayList;
 
+import Components.AnimationComponent;
 import Components.BodyComponent;
 import Components.CollisionComponent;
 import Components.PlayerComponent;
@@ -208,6 +209,15 @@ public class EntityManager {
         typeComponent.setType(type);
         entity.add(typeComponent);
         return entity;
+    }
+
+    private Entity addAnimationComponent(Entity entity, String entiyName) {
+        AnimationComponent animationComponent = engine.createComponent(AnimationComponent.class);
+
+        switch(entiyName) {
+            case "Player":
+                animationComponent.addAnimation(AnimationComponent.ANIMATIONSTATE.UP, )
+        }
     }
 
 }

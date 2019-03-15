@@ -39,6 +39,7 @@ public class LoadingScreen implements Screen{
         Gdx.app.log(TAG, "in Loading Screen Show Method");
 
         loadingMapAssets();
+        loadingTextureAtlas();
     }
 
     @Override
@@ -56,7 +57,7 @@ public class LoadingScreen implements Screen{
 
             //currently blocking while loading maps
             myAssetManager.updateAssetLoading();
-            if(timeToWait<=0 && myAssetManager.isAssetLoaded("TestMap.tmx")) {
+            if(timeToWait<=0 && myAssetManager.loadCompleted() == 1) {
 
             game.setScreen(DarkThaumaturgy.SCREENTYPE.MENU);
             timeToWait = 2f;
@@ -91,9 +92,13 @@ public class LoadingScreen implements Screen{
 
     private void loadingMapAssets() {
         myAssetManager.loadMapAsset("TestMap.tmx");
-        Gdx.app.log(TAG, "" + myAssetManager.loadCompleted());
+        //Gdx.app.log(TAG, "" + myAssetManager.loadCompleted());
 
 
 
+    }
+
+    private void loadingTextureAtlas() {
+        myAssetManager.loadTextureAsset("Sprites/Output/DarkThaumaturgyAtlas.atlas");
     }
 }
