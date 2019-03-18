@@ -99,7 +99,7 @@ public class MainGameScreen implements Screen{
         world.setContactListener(collisionManager);
 
         initAshleySystems();
-        entityManager = new EntityManager(game, world, this.batch, engine);
+        entityManager = new EntityManager(game, world, this.batch, engine, this.myAssetManager);
         levelCollisionGenerator = new LevelCollisionGenerator(world, engine);
 
         //todo need to change how map is loaded when implementing asset management

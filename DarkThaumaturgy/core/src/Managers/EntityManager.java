@@ -3,7 +3,9 @@ package Managers;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -28,6 +30,8 @@ public class EntityManager {
     private DarkThaumaturgy darkThaumaturgy;
     private World world;
     private SpriteBatch batch;
+    private MyAssetManager myAssetManager;
+    private TextureAtlas atlas;
     private PooledEngine engine;
     private BodyGenerator generator;
     private Vector2 tempPositionVector;
@@ -35,11 +39,13 @@ public class EntityManager {
 
     private ArrayList<Entity> entities;
 
-    public EntityManager(DarkThaumaturgy darkThaumaturgy, World world, SpriteBatch batch, PooledEngine engine) {
+    public EntityManager(DarkThaumaturgy darkThaumaturgy, World world, SpriteBatch batch, PooledEngine engine, MyAssetManager myAssetManager) {
     this.darkThaumaturgy = darkThaumaturgy;
     this.world = world;
     this.batch = batch;
     this.engine = engine;
+    this.myAssetManager = myAssetManager;
+    atlas = myAssetManager.getTextureAsset("Sprites/Output/DarkThaumaturgyAtlas.atlas");
     entities = new ArrayList<Entity>();
     generator = new BodyGenerator(world);
     tempPositionVector = new Vector2(Vector2.Zero);
@@ -72,6 +78,7 @@ public class EntityManager {
             addCollisionComponent(entity);
             addPlayerComponent(entity);
             addStateComponent(entity, entityName);
+            addAnimationComponent(entity, entityName);
             break;
 
             case "Enemy":
@@ -216,8 +223,20 @@ public class EntityManager {
 
         switch(entiyName) {
             case "Player":
-                animationComponent.addAnimation(AnimationComponent.ANIMATIONSTATE.UP, )
+                animationComponent.addAnimation(AnimationComponent.ANIMATIONSTATE.UP,
+                        new Animation(0.25f, atlas.findRegions("MainCharacterUp")))
+                        .addAnimation(AnimationComponent.ANIMATIONSTATE.DOWN,
+                                new Animation(0.25f, atlas.findRegions("MainCharacterDown")))
+                        .addAnimation(AnimationComponent.ANIMATIONSTATE.LEFT,
+                                new Animation(0.25f, atlas.findRegions("MainCharacterLeft")))
+                        .addAnimation(AnimationComponent.ANIMATIONSTATE.RIGHT,
+                                new Animation(0.25f, atlas.findRegions("MainCharacterUp")));
+                break;
+
         }
+
+        entity.add(animationComponent);
+        return entity;
     }
 
 }
