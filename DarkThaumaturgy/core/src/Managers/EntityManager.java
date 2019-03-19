@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -22,6 +23,7 @@ import Components.BodyComponent;
 import Components.CollisionComponent;
 import Components.PlayerComponent;
 import Components.StateComponent;
+import Components.TextureComponent;
 import Components.TypeComponent;
 import Helpers.BodyGenerator;
 import Helpers.Figures;
@@ -79,6 +81,7 @@ public class EntityManager {
             addPlayerComponent(entity);
             addStateComponent(entity, entityName);
             addAnimationComponent(entity, entityName);
+            addtextureComponent(entity, entityName);
             break;
 
             case "Enemy":
@@ -90,6 +93,7 @@ public class EntityManager {
             case "Coin":
                 addBodyComponent(entity, entityName, x, y);
                 addTypeComponent(entity, entityName);
+                addtextureComponent(entity, entityName);
 
                 break;
 
@@ -238,5 +242,24 @@ public class EntityManager {
         entity.add(animationComponent);
         return entity;
     }
+
+    private Entity addtextureComponent(Entity entity, String entityName) {
+        TextureComponent textureComponent = engine.createComponent(TextureComponent.class);
+
+        switch(entityName) {
+            case "Player":
+                textureComponent.setRegion((TextureRegion) entity
+                        .getComponent(AnimationComponent.class)
+                        .getAnimation(AnimationComponent.ANIMATIONSTATE.DOWN)
+                        .getKeyFrames()[0]);
+                break;
+            /*case "Coin":
+                textureComponent.setRegion(new TextureRegion(atlas.findRegion("Coin")));
+                break;*/
+        }
+        entity.add(textureComponent);
+        return entity;
+    }
+
 
 }

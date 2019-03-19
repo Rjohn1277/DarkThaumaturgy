@@ -7,6 +7,7 @@ import Components.BodyComponent;
 import Components.CollisionComponent;
 import Components.PlayerComponent;
 import Components.StateComponent;
+import Components.TextureComponent;
 import Components.TransformComponent;
 import Components.TypeComponent;
 
@@ -25,4 +26,6 @@ public class Mappers {
     public static final ComponentMapper<TypeComponent> typeComponent = ComponentMapper.getFor(TypeComponent.class);
 
     public static final ComponentMapper<AnimationComponent> animationComponent = ComponentMapper.getFor(AnimationComponent.class);
+
+    public static final ComponentMapper<TextureComponent> textureComponent = ComponentMapper.getFor(TextureComponent.class);
 }
