@@ -33,6 +33,7 @@ import Systems.CollisionSystem;
 import Systems.PhysicsDebugSystem;
 import Systems.PhysicsSystem;
 import Systems.PlayerControlSystem;
+import Systems.RenderSystem;
 
 public class MainGameScreen implements Screen{
     private static final String TAG = MainGameScreen.class.getSimpleName();
@@ -63,6 +64,7 @@ public class MainGameScreen implements Screen{
     private PhysicsDebugSystem physicsDebugSystem;
     private PlayerControlSystem playerControlSystem;
     private CollisionSystem collisionSystem;
+    private RenderSystem renderSystem;
 
     //Entity Manager
     private EntityManager entityManager;
@@ -115,11 +117,14 @@ public class MainGameScreen implements Screen{
         physicsDebugSystem = new PhysicsDebugSystem(world, camera);
         playerControlSystem = new PlayerControlSystem(gameInput);
         collisionSystem = new CollisionSystem(engine, world, game);
+        renderSystem = new RenderSystem(batch, camera);
 
         engine.addSystem(physicsSystem);
         engine.addSystem(physicsDebugSystem);
         engine.addSystem(playerControlSystem);
         engine.addSystem(collisionSystem);
+        //Animation system needs to run here
+        engine.addSystem(renderSystem);
 
 
 

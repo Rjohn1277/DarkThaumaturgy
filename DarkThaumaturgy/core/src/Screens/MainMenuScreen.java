@@ -37,7 +37,7 @@ public class MainMenuScreen implements Screen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         timeToWait-=delta;
-        Gdx.app.log(TAG, "time To Wait: " + timeToWait);
+        //Gdx.app.log(TAG, "time To Wait: " + timeToWait);
         if(timeToWait<=0) {
 
             game.setScreen(DarkThaumaturgy.SCREENTYPE.GAME);

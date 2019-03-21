@@ -53,7 +53,7 @@ public class LoadingScreen implements Screen{
         batch.end();
 
         timeToWait-=delta;
-            Gdx.app.log(TAG, "time To Wait: " + timeToWait);
+            //Gdx.app.log(TAG, "time To Wait: " + timeToWait);
 
             //currently blocking while loading maps
             myAssetManager.updateAssetLoading();

@@ -22,13 +22,17 @@ import Components.AnimationComponent;
 import Components.BodyComponent;
 import Components.CollisionComponent;
 import Components.PlayerComponent;
+import Components.RenderableComponent;
 import Components.StateComponent;
 import Components.TextureComponent;
+import Components.TransformComponent;
 import Components.TypeComponent;
 import Helpers.BodyGenerator;
 import Helpers.Figures;
 
 public class EntityManager {
+
+    public String TAG = EntityManager.class.getSimpleName();
     private DarkThaumaturgy darkThaumaturgy;
     private World world;
     private SpriteBatch batch;
@@ -72,28 +76,37 @@ public class EntityManager {
     public Entity spawnEntity(String entityName, int x, int y) {
         Entity entity = engine.createEntity();
 
+        Gdx.app.log(TAG, "Created " + entityName);
+
         switch(entityName) {
             case "Player":
-                Gdx.app.log("PLAYER CREATION", "POSITION: (" +x+"," +y+")");
+                //Gdx.app.log("PLAYER CREATION", "POSITION: (" +x+"," +y+")");
             addBodyComponent(entity, entityName, x, y);
+            addTransformComponent(entity, x, y);
             addTypeComponent(entity, entityName);
             addCollisionComponent(entity);
             addPlayerComponent(entity);
             addStateComponent(entity, entityName);
             addAnimationComponent(entity, entityName);
             addtextureComponent(entity, entityName);
+            addRenderableComponent(entity);
             break;
 
             case "Enemy":
                 addBodyComponent(entity, entityName, x, y);
+                addTransformComponent(entity, x, y);
                 addTypeComponent(entity, entityName);
                 addCollisionComponent(entity);
                 addStateComponent(entity, entityName);
+
                 break;
             case "Coin":
+                Gdx.app.log("COIN CREATION", "POSITION: (" +x+"," +y+")");
                 addBodyComponent(entity, entityName, x, y);
+                addTransformComponent(entity, x, y);
                 addTypeComponent(entity, entityName);
-                addtextureComponent(entity, entityName);
+                //addtextureComponent(entity, entityName);
+                //addRenderableComponent(entity);
 
                 break;
 
@@ -258,6 +271,22 @@ public class EntityManager {
                 break;*/
         }
         entity.add(textureComponent);
+        return entity;
+    }
+
+    private Entity addRenderableComponent(Entity entity) {
+        RenderableComponent renderableComponent = engine.createComponent(RenderableComponent.class);
+        entity.add(renderableComponent);
+        return entity;
+
+    }
+
+    public Entity addTransformComponent (Entity entity, int x, int y) {
+        TransformComponent transformComponent = engine.createComponent(TransformComponent.class);
+        tempPositionVector.set(x,y);
+        transformComponent.setPosition(tempPositionVector);
+        entity.add(transformComponent);
+
         return entity;
     }
 
