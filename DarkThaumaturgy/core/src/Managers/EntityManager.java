@@ -105,8 +105,8 @@ public class EntityManager {
                 addBodyComponent(entity, entityName, x, y);
                 addTransformComponent(entity, x, y);
                 addTypeComponent(entity, entityName);
-                //addtextureComponent(entity, entityName);
-                //addRenderableComponent(entity);
+                addtextureComponent(entity, entityName);
+                addRenderableComponent(entity);
 
                 break;
 
@@ -266,9 +266,9 @@ public class EntityManager {
                         .getAnimation(AnimationComponent.ANIMATIONSTATE.DOWN)
                         .getKeyFrames()[0]);
                 break;
-            /*case "Coin":
+            case "Coin":
                 textureComponent.setRegion(new TextureRegion(atlas.findRegion("Coin")));
-                break;*/
+                break;
         }
         entity.add(textureComponent);
         return entity;
