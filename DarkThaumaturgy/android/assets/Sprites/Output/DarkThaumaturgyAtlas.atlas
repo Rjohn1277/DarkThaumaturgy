@@ -1,6 +1,6 @@
 
 DarkThaumaturgyAtlas.png
-size: 256,64
+size: 512,64
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -32,262 +32,542 @@ ArrowUp
   orig: 16, 16
   offset: 0, 0
   index: -1
-BowNormal
+Blue_Coin
   rotate: false
   xy: 20, 20
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-BowPulled
+BowNormal
   rotate: false
   xy: 38, 38
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-Coin
+BowPulled
   rotate: false
   xy: 20, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-Heart
+Coin
   rotate: false
   xy: 38, 20
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-HeartContainer
+Fireball
   rotate: false
   xy: 56, 38
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-MainCharacterDown
+Green_Coin
   rotate: false
   xy: 38, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
-  index: 1
-MainCharacterDown
-  rotate: false
-  xy: 38, 2
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: 3
-MainCharacterDown
+  index: -1
+Heart
   rotate: false
   xy: 56, 20
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
-  index: 2
-MainCharacterDown
+  index: -1
+HeartContainer
   rotate: false
   xy: 74, 38
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
-  index: 4
-MainCharacterLeft
+  index: -1
+MainCharacterDown
   rotate: false
   xy: 56, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 1
-MainCharacterLeft
+MainCharacterDown
   rotate: false
   xy: 56, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 3
-MainCharacterLeft
+MainCharacterDown
   rotate: false
   xy: 74, 20
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 2
-MainCharacterLeft
+MainCharacterDown
   rotate: false
   xy: 92, 38
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 4
-MainCharacterRight
+MainCharacterLeft
   rotate: false
   xy: 74, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 1
-MainCharacterRight
+MainCharacterLeft
   rotate: false
   xy: 74, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 3
-MainCharacterRight
+MainCharacterLeft
   rotate: false
   xy: 92, 20
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 2
-MainCharacterRight
+MainCharacterLeft
   rotate: false
   xy: 110, 38
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 4
-MainCharacterUp
+MainCharacterRight
   rotate: false
   xy: 92, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 1
-MainCharacterUp
+MainCharacterRight
   rotate: false
   xy: 92, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 3
-MainCharacterUp
+MainCharacterRight
   rotate: false
   xy: 110, 20
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 2
-MainCharacterUp
+MainCharacterRight
   rotate: false
   xy: 128, 38
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 4
-WizardDown
+MainCharacterUp
   rotate: false
   xy: 110, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 1
-WizardDown
+MainCharacterUp
   rotate: false
   xy: 110, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 3
-WizardDown
+MainCharacterUp
   rotate: false
   xy: 128, 20
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 2
-WizardDown
+MainCharacterUp
   rotate: false
   xy: 146, 38
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 4
-WizardLeft
+Master_Sword
   rotate: false
   xy: 128, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
-  index: 1
-WizardLeft
-  rotate: false
-  xy: 128, 2
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: 3
-WizardLeft
+  index: -1
+Orange_Coin
   rotate: false
   xy: 146, 20
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
-  index: 2
-WizardLeft
+  index: -1
+Potion
   rotate: false
   xy: 164, 38
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
-  index: 4
-WizardRight
+  index: -1
+Red_Coin
   rotate: false
   xy: 146, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
-  index: 1
-WizardRight
-  rotate: false
-  xy: 146, 2
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: 3
-WizardRight
+  index: -1
+SkeletonDown
   rotate: false
   xy: 164, 20
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
+  index: 1
+SkeletonDown
+  rotate: false
+  xy: 164, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+SkeletonDown
+  rotate: false
+  xy: 182, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+SkeletonDown
+  rotate: false
+  xy: 164, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+SkeletonLeft
+  rotate: false
+  xy: 182, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+SkeletonLeft
+  rotate: false
+  xy: 182, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+SkeletonLeft
+  rotate: false
+  xy: 200, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+SkeletonLeft
+  rotate: false
+  xy: 182, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+SkeletonRight
+  rotate: false
+  xy: 200, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+SkeletonRight
+  rotate: false
+  xy: 200, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+SkeletonRight
+  rotate: false
+  xy: 218, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+SkeletonRight
+  rotate: false
+  xy: 200, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+SkeletonUp
+  rotate: false
+  xy: 218, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+SkeletonUp
+  rotate: false
+  xy: 218, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+SkeletonUp
+  rotate: false
+  xy: 236, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+SkeletonUp
+  rotate: false
+  xy: 218, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+SuperWizardDown
+  rotate: false
+  xy: 236, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+SuperWizardDown
+  rotate: false
+  xy: 236, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+SuperWizardDown
+  rotate: false
+  xy: 254, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+SuperWizardDown
+  rotate: false
+  xy: 236, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+SuperWizardLeft
+  rotate: false
+  xy: 254, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+SuperWizardLeft
+  rotate: false
+  xy: 254, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+SuperWizardLeft
+  rotate: false
+  xy: 272, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+SuperWizardLeft
+  rotate: false
+  xy: 254, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+SuperWizardRight
+  rotate: false
+  xy: 272, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+SuperWizardRight
+  rotate: false
+  xy: 272, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+SuperWizardRight
+  rotate: false
+  xy: 290, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+SuperWizardRight
+  rotate: false
+  xy: 272, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+SuperWizardUp
+  rotate: false
+  xy: 290, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+SuperWizardUp
+  rotate: false
+  xy: 290, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+SuperWizardUp
+  rotate: false
+  xy: 308, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+SuperWizardUp
+  rotate: false
+  xy: 290, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+WizardDown
+  rotate: false
+  xy: 308, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+WizardDown
+  rotate: false
+  xy: 308, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+WizardDown
+  rotate: false
+  xy: 326, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+WizardDown
+  rotate: false
+  xy: 308, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+WizardLeft
+  rotate: false
+  xy: 326, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+WizardLeft
+  rotate: false
+  xy: 326, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+WizardLeft
+  rotate: false
+  xy: 344, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+WizardLeft
+  rotate: false
+  xy: 326, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+WizardRight
+  rotate: false
+  xy: 344, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+WizardRight
+  rotate: false
+  xy: 344, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+WizardRight
+  rotate: false
+  xy: 362, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
   index: 2
 WizardRight
   rotate: false
-  xy: 182, 38
+  xy: 344, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 4
 WizardUp
   rotate: false
-  xy: 164, 2
+  xy: 362, 20
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 1
 WizardUp
   rotate: false
-  xy: 164, 2
+  xy: 362, 20
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 3
 WizardUp
   rotate: false
-  xy: 182, 20
+  xy: 380, 38
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 2
 WizardUp
   rotate: false
-  xy: 200, 38
+  xy: 362, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 4
+Wooden_Sword
+  rotate: false
+  xy: 380, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

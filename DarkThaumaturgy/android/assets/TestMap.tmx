@@ -167,7 +167,7 @@
   </object>
   <object id="94" x="448" y="400">
    <properties>
-    <property name="Type" value="StaticB"/>
+    <property name="Type" value="StaticBody"/>
    </properties>
    <polyline points="0,0 0,16 -64,16 -64,-144 112,-144 112,16 32,16 32,0 96,0 96,-128 -48,-128 -48,0 0,0"/>
   </object>

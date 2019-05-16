@@ -37,6 +37,9 @@ public class AnimationComponent implements Component, Poolable {
         this.isLooping = isLooping;
     }
 
+    public boolean isLooping() {
+        return isLooping;
+    }
 
     @Override
     public void reset() {

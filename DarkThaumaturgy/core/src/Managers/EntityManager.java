@@ -247,7 +247,7 @@ public class EntityManager {
                         .addAnimation(AnimationComponent.ANIMATIONSTATE.LEFT,
                                 new Animation(0.25f, atlas.findRegions("MainCharacterLeft")))
                         .addAnimation(AnimationComponent.ANIMATIONSTATE.RIGHT,
-                                new Animation(0.25f, atlas.findRegions("MainCharacterUp")));
+                                new Animation(0.25f, atlas.findRegions("MainCharacterRight")));
                 break;
 
         }
