@@ -107,7 +107,7 @@ public class MainGameScreen implements Screen{
         levelCollisionGenerator = new LevelCollisionGenerator(world, engine);
 
         //todo need to change how map is loaded when implementing asset management
-        map = myAssetManager.getMapAsset("TestMap.tmx");
+        map = myAssetManager.getMapAsset("GameMap.tmx");
         mapRenderer = new OrthogonalTiledMapRenderer(map, 1/Figures.PPM,this.batch);
 
         levelCollisionGenerator.createCollisionLevel(map);

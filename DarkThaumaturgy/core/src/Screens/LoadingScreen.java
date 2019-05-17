@@ -91,7 +91,7 @@ public class LoadingScreen implements Screen{
     }
 
     private void loadingMapAssets() {
-        myAssetManager.loadMapAsset("TestMap.tmx");
+        myAssetManager.loadMapAsset("GameMap.tmx");
         //Gdx.app.log(TAG, "" + myAssetManager.loadCompleted());
 
 
